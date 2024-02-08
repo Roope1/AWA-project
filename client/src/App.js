@@ -1,12 +1,17 @@
-import TestComponent from './components/TestComponent.tsx';
 import { TopBar } from './components/TopBar.tsx';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
+import LoginPage from './components/LoginPage.tsx';
 
 function App() {
   return (
-    <div className="App bg-background h-screen ">
-      <TopBar />
-      <TestComponent />
-    </div>
+    <Router>
+      <div className="App flex flex-col w-screen h-screen bg-background">
+        <TopBar />
+        <Routes>
+          <Route path='/login' element = {<LoginPage />}/>
+        </Routes>
+      </div>
+    </Router>
   );
 }
 
