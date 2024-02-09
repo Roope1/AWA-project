@@ -9,6 +9,7 @@ const Login = () => {
 
     const handleChange = (e) => {
         setUserInfo({...userInfo, [e.target.name]: e.target.value})
+        setLoginFailed(false);
     }
 
     const handleLogin = (e) => {
