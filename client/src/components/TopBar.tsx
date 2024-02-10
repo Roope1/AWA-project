@@ -13,7 +13,7 @@ export const TopBar = () => {
             <span className='self-center text-2xl whitespace-nowrap'>NotTinder</span>
         </a>
         <div className='flex items-center space-x-6 text-secondary'>
-            {!loggedIn ? <p><a href='/login'>Sing in</a></p> : <p>{username}</p>}
+            {!loggedIn ? <p><a href='/login'>Sign in</a></p> : <p>{username}</p>}
             <p>FI / EN</p>
         </div>
     </div>
