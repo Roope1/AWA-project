@@ -7,12 +7,12 @@ const Login = () => {
 
     const [userInfo, setUserInfo] = useState({});
 
-    const handleChange = (e) => {
+    const handleChange = (e: any) => {
         setUserInfo({...userInfo, [e.target.name]: e.target.value})
         setLoginFailed(false);
     }
 
-    const handleLogin = (e) => {
+    const handleLogin = (e: any) => {
         e.preventDefault();
         // TODO: post userInfo to backend once its built
         setLoginFailed(true);

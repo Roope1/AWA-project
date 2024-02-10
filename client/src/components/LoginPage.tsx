@@ -1,5 +1,5 @@
 import React from 'react'
-import Login from './Login.tsx'
+import Login from './Login'
 
 const LoginPage = () => {
   return (

@@ -1,6 +1,6 @@
-import { TopBar } from './components/TopBar.tsx';
+import { TopBar } from './components/TopBar';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
-import LoginPage from './components/LoginPage.tsx';
+import LoginPage from './components/LoginPage';
 
 function App() {
   return (
