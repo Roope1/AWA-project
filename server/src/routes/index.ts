@@ -13,8 +13,9 @@ router.get('/', function (req: Request, res: Response) {
 
 // register
 router.post('/register', async (req: Request, res: Response, next: NextFunction) => {
-    if (req.body.password !== req.body.retypepassword) {
-        return res.status(403).json({ mgs: "Passwords do not match" })
+    console.log(req.body)
+    if (req.body.password != req.body.retypepassword) {
+        return res.status(403).json({ msg: "Passwords do not match" })
     }
 
     let user: User | null = await User.findOne({ username: req.body.username })

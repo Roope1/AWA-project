@@ -11,7 +11,25 @@ const RegisterPage = () => {
 
     const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
+        console.log(JSON.stringify(registerData))
         // check password match
+        fetch('/register', {
+            method: "POST",
+            headers: {
+                "Content-type" : "application/json",
+            },
+            body: JSON.stringify(registerData),
+            mode: 'cors'
+        })
+        .then((res: Response) => {
+            if (res.status === 200) {
+                window.location.href = '/login';
+            } else {
+                res.json().then(data => setErrorMsg(data.msg))
+                console.log("fucked up", res)
+            }
+        })
+        
         // send register to backend
     }
 
@@ -24,9 +42,9 @@ const RegisterPage = () => {
                     <label htmlFor="username">Username</label>
                     <input className='shadow appearance-none border border-accent-secondary rounded mb-3 focus:outline-none focus:shadow-outline py-2 px-3' name='username' type='text' required/>
                     <label htmlFor="password">Password</label>
-                    <input className='shadow appearance-none border border-accent-secondary rounded mb-3 focus:outline-none focus:shadow-outline py-2 px-3' name='password ' type='password' required/>
+                    <input className='shadow appearance-none border border-accent-secondary rounded mb-3 focus:outline-none focus:shadow-outline py-2 px-3' name='password' type='password' required/>
                     <label htmlFor="retypepassword">Retype password</label>
-                    <input className='shadow appearance-none border border-accent-secondary rounded mb-3 focus:outline-none focus:shadow-outline py-2 px-3' name='retypepasswod' type='password' required/>
+                    <input className='shadow appearance-none border border-accent-secondary rounded mb-3 focus:outline-none focus:shadow-outline py-2 px-3' name='retypepassword' type='password' required/>
                     <p className='text-error text-s text-center'>{errorMsg}</p>
                     <input className='bg-main rounded hover:bg-accent text-secondary py-3 hover:text-main transition-all' type='submit' value='Register' />
                 </div>
