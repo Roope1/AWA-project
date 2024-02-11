@@ -3,18 +3,21 @@ var router = express.Router();
 
 import { User } from "../models/User"
 import bcrypt from 'bcrypt';
+import jwt, { Jwt } from 'jsonwebtoken';
 
 
 router.get('/', function (req: Request, res: Response) {
     res.status(200).send("ok");
-});
+})
 
+
+// register
 router.post('/register', async (req: Request, res: Response, next: NextFunction) => {
     if (req.body.password !== req.body.retypepassword) {
         return res.status(403).json({ mgs: "Passwords do not match" })
     }
 
-    let user = await User.findOne({ username: req.body.username })
+    let user: User | null = await User.findOne({ username: req.body.username })
     // check that the username is available
     if (user) {
         //  username already in use
@@ -40,6 +43,36 @@ router.post('/register', async (req: Request, res: Response, next: NextFunction)
         })
     }
 });
+
+//login
+router.post('/login', async (req: Request, res: Response, next: NextFunction) => {
+
+    // check if an user with given username exists
+    let user: User | null = await User.findOne({ username: req.body.username })
+
+    // if user doesn't exist
+    if (!user) {
+        return res.status(403).json({ success: false});
+    }
+
+    let isMatch: boolean = await bcrypt.compare(req.body.password, user.password)
+    if (isMatch) {
+        const jwtPayload = {
+            username: user.username
+        }
+        jwt.sign(
+            jwtPayload,
+            process.env.SECRET as jwt.Secret,
+            {
+                expiresIn: 900
+            },
+            (err, token) => {
+                res.json({success: true, token: token})
+            }
+        )
+    }
+
+})
 
 
 module.exports = router;

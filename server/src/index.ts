@@ -1,3 +1,4 @@
+require('dotenv').config();
 import { Application } from "express";
 import http from 'http';
 
