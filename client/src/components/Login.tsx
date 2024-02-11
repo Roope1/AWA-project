@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { ChangeEvent, FormEvent } from 'react'
 import { useState } from 'react'
 
 const Login = () => {
@@ -7,12 +7,12 @@ const Login = () => {
 
     const [userInfo, setUserInfo] = useState({});
 
-    const handleChange = (e: any) => {
+    const handleChange = (e: ChangeEvent<HTMLFormElement>) => {
         setUserInfo({...userInfo, [e.target.name]: e.target.value})
         setLoginFailed(false);
     }
 
-    const handleLogin = (e: any) => {
+    const handleLogin = (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         // TODO: post userInfo to backend once its built
         setLoginFailed(true);
