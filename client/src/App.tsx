@@ -1,6 +1,7 @@
 import { TopBar } from './components/TopBar';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import LoginPage from './components/LoginPage';
+import RegisterPage from './components/RegisterPage';
 
 function App() {
   return (
@@ -9,6 +10,7 @@ function App() {
         <TopBar />
         <Routes>
           <Route path='/login' element = {<LoginPage />}/>
+          <Route path='/register' element = { <RegisterPage />} />
         </Routes>
       </div>
     </Router>
