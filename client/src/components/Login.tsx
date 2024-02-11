@@ -15,7 +15,24 @@ const Login = () => {
     const handleLogin = (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         // TODO: post userInfo to backend once its built
-        setLoginFailed(true);
+        fetch('/login', {
+            method: "POST",
+            mode: 'cors',
+            headers: {
+                "Content-type": "application/json"
+            },
+            body: JSON.stringify(userInfo) 
+        })
+        .then((res: Response) => {
+            if(res.status != 200){
+                setLoginFailed(true);
+            } else {
+                res.json().then((data)=>{
+                    localStorage.setItem("token", data.token)
+                    window.location.href = '/'
+                })
+            }
+        })
     }
 
     
