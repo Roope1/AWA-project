@@ -28,7 +28,7 @@ const Login = () => {
                 setLoginFailed(true);
             } else {
                 res.json().then((data)=>{
-                    localStorage.setItem("token", data.token)
+                    localStorage.setItem("auth_token", data.token)
                     window.location.href = '/'
                 })
             }
