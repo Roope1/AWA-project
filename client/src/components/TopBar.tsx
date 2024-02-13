@@ -10,7 +10,6 @@ export const TopBar = () => {
     useEffect(() => {
 
       let auth_token: string | null = localStorage.getItem('auth_token');
-      //if (!auth_token) window.location.href = '/login';
   
       fetch('/user', {
         method: "GET",
@@ -29,7 +28,7 @@ export const TopBar = () => {
             })
           }
         })
-    
+        .catch(() => setLoggedIn(false))
     }, [])
 
 
