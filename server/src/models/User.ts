@@ -9,7 +9,8 @@ const userSchema = new Schema({
     username: { type: String, required: true },
     profilePic: { type: String, required: false },
     password: { type: String, required: true },
-    matches: [ObjectId]
+    likes: [ObjectId], 
+    dismiss: [ObjectId], // seen but not liked
 }, { timestamps: true })
 
 export type User = InferSchemaType<typeof userSchema>;

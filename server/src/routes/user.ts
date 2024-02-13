@@ -25,7 +25,7 @@ router.get('/random', (req: Request, res: Response, next: NextFunction) => {
         // find all users that the user has not matched with and not the authorized user 
         User.find({
             $and: [
-                { _id: {$nin: user.matches}},
+                { _id: {$nin: user.likes}},
                 { username: {$ne: req.user }}
             ]
         })
@@ -34,7 +34,7 @@ router.get('/random', (req: Request, res: Response, next: NextFunction) => {
                 res.json({msg: "No more users"})
             } else {
                 // typed to partial to be able to "break out" of the User type mold (to not send the password anywhere)
-                let randomUser: any = users[Math.floor((Math.random() * users.length))] as any
+                let randomUser: Partial<User> = users[Math.floor((Math.random() * users.length))] as Partial<User>
                 // set the password to undefined as that wont be sent in the response (using this as delete keyword didn't work)
                 randomUser.password = undefined;
                 res.send(randomUser);
