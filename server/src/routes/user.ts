@@ -15,4 +15,22 @@ router.get('/', (req: Request, res: Response, next: NextFunction) => {
     })
 })
 
+router.get('/random', (req: Request, res: Response, next: NextFunction) => {
+    // get the authenticated users matches
+    User.findOne({ username: req.user })
+    .then((user: User | null) => {
+        if (!user) throw new Error;
+        // find all users that the user has not matched with
+        User.find({ _id: {$nin: user.matches}})
+        .then((users: User[] | null) => {
+            if (!users){
+                // handle this
+            } else {
+                // TODO: parse this info before sending (dont send password or other stuff like that)
+                res.send(users[Math.floor((Math.random() * users.length))])
+            }
+        })
+    })
+});
+
 module.exports = router;
