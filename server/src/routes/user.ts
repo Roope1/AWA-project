@@ -11,7 +11,7 @@ router.get('/', passport.authenticate('jwt', { session: false }), (req: Request,
     User.findOne({ username: req.user })
     .then((user: User | null) => {
         if (!user) {
-            res.sendStatus(403);
+            res.sendStatus(401);
         } else {
             res.send(user);
         }

@@ -18,7 +18,8 @@ const MainPage = () => {
       mode: "cors"
     })
       .then(response => {
-        if (response.status === 403) { // if return status is forbidden == user is not signed in and should be redirected to sign in
+        if (response.status === 401) { // if return status is forbidden == user is not signed in and should be redirected to sign in
+          localStorage.removeItem('auth_token') // in case auth_token is expired
           window.location.href = '/login'
         } else {
           response.json().then((data) => {
