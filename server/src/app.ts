@@ -19,6 +19,7 @@ db.on('error', () => {
 
 // Routers
 const indexRouter = require('./routes/index')
+const userRouter = require('./routes/user')
 
 const app = express()
 
@@ -28,6 +29,7 @@ app.use(express.urlencoded({ extended: false }))
 app.use(cookieParser())
 
 app.use('/', indexRouter);
+app.use('/user', userRouter);
 
 if (process.env.NODE_ENV === "production") {
     app.use(express.static(path.resolve("..", "client", "build")));
