@@ -28,13 +28,7 @@ const MainPage = () => {
       })
   }, [])
 
-  // get these from backend via authenticated user
-  const profileProps = {
-    name: "koira",
-    username: "doggie44",
-    bio: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Cupiditate iste harum iure aut ab alias veniam saepe aliquid officia, doloribus voluptate repellat vero sapiente minima exercitationem nam doloremque! Natus, harum?"
-  }
-
+  
   return (
     <div>
       <div className='grid grid-cols-2 w-screen py-10 text-white text-3xl'>
@@ -42,7 +36,7 @@ const MainPage = () => {
         <button className='bg-main rounded-xl p-10 m-10'>Start Swiping</button>
       </div>
       <div className='flex flex-col items-center justify-center'>
-        <Profile {...profileProps} />
+        <Profile {...profileData} />
       </div>
 
     </div>
