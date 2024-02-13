@@ -1,11 +1,14 @@
 import { Request, Response } from "express";
 import { Connection, Mongoose } from "mongoose";
+import passport from "passport";
 
 const express = require('express');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const cors = require('cors');
 const path = require('path')
+
+require('./validateToken')
 
 import mongoose from 'mongoose';
 const mongodb: string = "mongodb://127.0.0.1:27017/project-db";
@@ -29,7 +32,7 @@ app.use(express.urlencoded({ extended: false }))
 app.use(cookieParser())
 
 app.use('/', indexRouter);
-app.use('/user', userRouter);
+app.use('/user', passport.authenticate('jwt', { session: false }), userRouter);
 
 if (process.env.NODE_ENV === "production") {
     app.use(express.static(path.resolve("..", "client", "build")));
