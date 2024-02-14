@@ -4,7 +4,7 @@ import Profile from './Profile'
 const SwipePage = () => {
 
     const [profile, setProfile] = useState({})
-    const [triggerEffect, setTriggerEffect] = useState(Date.now);
+    const [triggerNewUser, setTriggerNewUser] = useState(Date.now);
 
     const auth_token = localStorage.getItem("auth_token")
 
@@ -22,7 +22,7 @@ const SwipePage = () => {
                     .then(data => setProfile(data))
             }
             )
-    }, [triggerEffect, auth_token])
+    }, [triggerNewUser, auth_token])
 
     // reject
     const handleLeft = () => {
@@ -35,7 +35,7 @@ const SwipePage = () => {
             body: JSON.stringify(profile),
             mode: "cors"
         })
-        setTriggerEffect(Date.now)
+        setTriggerNewUser(Date.now)
     }
 
     // like
@@ -52,9 +52,9 @@ const SwipePage = () => {
             .then((res: Response) => res.json())
             .then(data => {
                 if (data?.msg === "match") {
-                    // handle instant match 
+                    // TODO: handle instant match 
                 } else {
-                    setTriggerEffect(Date.now)
+                    setTriggerNewUser(Date.now)
                 }
             })
     }
