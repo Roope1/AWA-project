@@ -9,7 +9,7 @@ const userSchema = new Schema({
     username: { type: String, required: true },
     profilePic: { type: String, required: false },
     password: { type: String, required: true },
-    likes: [ObjectId], 
+    like: [ObjectId], 
     dismiss: [ObjectId], // seen but not liked
 }, { timestamps: true })
 
