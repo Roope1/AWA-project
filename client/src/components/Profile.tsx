@@ -5,7 +5,7 @@ const Profile = ({...props}) => {
   return (
     <div className='w-2/3 bg-secondary p-16'>
         <div className='flex flex-row'>
-            <img className='w-1/5 rounded-full' src= {avatar} alt="avatar" />
+            <img className='w-1/4 h-1/4' src= {props.previewAvatar ?? props.avatar ?? avatar} alt="avatar" />
             <div className='mx-10 my-auto'>
                 <h1 className='text-4xl'>{props.username}</h1>
                 <p>{props?.name}</p>

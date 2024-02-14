@@ -8,6 +8,8 @@ const ProfileDropdown = (props: { username: string }) => {
         if (value === "logout") {
             localStorage.removeItem("auth_token")
             window.location.href = "/login"
+        } else if (value === "edit") {
+            window.location.href = "/edit"
         }
     }
 

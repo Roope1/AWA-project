@@ -7,6 +7,7 @@ const mongoose = require('mongoose');
 const userSchema = new Schema({
     name: { type: String, required: true },
     username: { type: String, required: true },
+    bio: {type : String, required: false},
     profilePic: { type: String, required: false },
     password: { type: String, required: true },
     like: [ObjectId], 

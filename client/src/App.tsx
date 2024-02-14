@@ -4,6 +4,7 @@ import LoginPage from './components/LoginPage';
 import RegisterPage from './components/RegisterPage';
 import MainPage from './components/MainPage';
 import SwipePage from './components/SwipePage';
+import EditProfile from './components/EditProfile';
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
           <Route path='/login' element = {<LoginPage />}/>
           <Route path='/register' element = { <RegisterPage />} />
           <Route path='/swipe' element = { <SwipePage />} />
+          <Route path='/edit' element = {<EditProfile />} />
         </Routes>
       </div>
     </Router>
