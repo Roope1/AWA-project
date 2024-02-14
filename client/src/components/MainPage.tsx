@@ -34,7 +34,7 @@ const MainPage = () => {
     <div>
       <div className='grid grid-cols-2 w-screen py-10 text-white text-3xl'>
         <button className='bg-main rounded-xl p-10 m-10'>Chats</button>
-        <button className='bg-main rounded-xl p-10 m-10'>Start Swiping</button>
+        <button className='bg-main rounded-xl p-10 m-10' onClick={() => window.location.href = '/swipe'}>Start Swiping</button>
       </div>
       <div className='flex flex-col items-center justify-center'>
         <Profile {...profileData} />
