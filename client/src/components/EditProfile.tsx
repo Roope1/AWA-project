@@ -3,10 +3,10 @@ import Profile from './Profile'
 
 const EditProfile = () => {
 
+    let auth_token: string | null = localStorage.getItem('auth_token');
     const [profileData, setProfileData] = useState({})
 
     useEffect(() => {
-        let auth_token: string | null = localStorage.getItem('auth_token');
         if (!auth_token) window.location.href = '/login';
     
         fetch('/user', {
@@ -31,31 +31,48 @@ const EditProfile = () => {
     const handleChange = (e: ChangeEvent<HTMLFormElement>) => {
         console.log(e.target.name);
         if (e.target.name === "avatar") {
-            setProfileData({...profileData, ["previewAvatar"]: URL.createObjectURL(e.target.files[0])})
+            setProfileData({...profileData, ["previewAvatar"]: URL.createObjectURL(e.target.files[0]), [e.target.name]: e.target.value})
         } else {
-            setProfileData({...profileData, [e.target.name]: e.target.value})
+          setProfileData({...profileData, [e.target.name]: e.target.value})
         }
     }
 
     const submit = (e: FormEvent<HTMLFormElement>) => {
-        // send to backend
+        e.preventDefault();
+        let form = new FormData();
+        form.append("image", (profileData as any).avatar);
+        form.append("bio", (profileData as any).bio);
+
+        fetch('/user/edit', {
+          method: "POST",
+          headers: {
+            "authorization": "Bearer " + auth_token,
+          },
+          body: form
+        })        
     }
     
 
     return (
-        <div className='flex flex-col justify-center items-center'>
+        <div className='flex flex-col justify-center items-center w-full h-full'>
             <form className='w-2/3' onSubmit={submit} onChange={handleChange}>
-                <div className='my-10 flex flex-col'>
+                <div className='my-10 grid grid-cols-2'>
+                  <div className='m-auto'>
                     <label htmlFor="avatar">Profile picture:</label>
                     <input type="file" name="avatar" />
+                  </div>
+                  <div>
                     <label htmlFor="bio">Bio:</label>
-                    <textarea name='bio' value={(profileData as any).bio}/>
-                    <input type="submit" name="submit" id="" value="Save" />
+                    <textarea className='w-full h-full' name='bio' value={(profileData as any).bio}/>
+                  </div>
+                </div>
+                <div className='flex flex-col justify-center items-center  gap-2'>
+                  <input className='bg-accent py-4 px-6 rounded hover:cursor-pointer' type="submit" name="submit" value="Save"/>
+                  <button className='bg-main py-4 px-6 rounded text-background' >Cancel</button>
                 </div>
             </form>
-            <button>Cancel</button>
-            <div className='my-10'>
-                <h1>Preview:</h1>
+        
+            <div className='my-auto flex items-center justify-center h-2/3 w-2/3'>
                 <Profile {...profileData}/>
             </div>
         </div>
