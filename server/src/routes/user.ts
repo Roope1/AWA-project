@@ -3,7 +3,7 @@ var router = express.Router();
 import multer from 'multer';
 import { User } from "../models/User"
 import { Avatar } from "../models/Avatar";
-import { ObjectId } from "mongoose";
+import { ObjectId, Types } from "mongoose";
 
 const upload = multer();
 
@@ -35,7 +35,6 @@ router.get('/random', (req: Request, res: Response, next: NextFunction) => {
             ]
         })
         .then((users: User[] | null) => {
-            console.log(users)
             if (users == undefined || users?.length < 1){
                 console.log("no more users")
                 res.json({msg: "No more users"})
@@ -96,6 +95,7 @@ router.post('/bio', (req: Request, res: Response, next: NextFunction) => {
     res.sendStatus(200)
 });
 
+/* Posting new image */
 router.post('/image', upload.single('avatar'), (req: Request, res: Response, next: NextFunction) => {
     if (!req.file) res.sendStatus(403); 
     
@@ -117,6 +117,24 @@ router.post('/image', upload.single('avatar'), (req: Request, res: Response, nex
                 res.sendStatus(200);
             }
         })
+    })
+});
+
+/* Get image */
+router.get('/image/:id', (req: Request, res: Response, next: NextFunction) => {
+    if (req.params.id === "undefined") {
+        return res.sendStatus(404);
+    }
+    res.set({
+        'Content-Disposition': "inline",
+        "Content-type": "application/json"
+    })
+    Avatar.findOne({_id: req.params.id})
+    .then((avatar: Avatar | null) => {
+        if (avatar) {
+            const b64 = Buffer.from(avatar.buffer as Buffer).toString('base64')
+            return res.status(200).send({ image :`data:${avatar.mimetype};base64,${b64}`})
+        }
     })
 });
 
