@@ -22,7 +22,7 @@ const Profile = ({...props}) => {
       } 
     })
       
-  }, [props])
+  }, [props.profilePic])
 
   return (
     <div className='w-[64rem] h-[32rem] bg-secondary grid grid-cols-2 '>

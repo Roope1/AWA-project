@@ -85,7 +85,7 @@ const EditProfile = () => {
                 </div>
                 <div className='flex flex-col justify-center items-center  gap-2'>
                   <input className='bg-accent py-4 px-6 rounded hover:cursor-pointer' type="submit" name="submit" value="Save"/>
-                  <button className='bg-main py-4 px-6 rounded text-background' >Cancel</button>
+                  <button className='bg-main py-4 px-6 rounded text-background' onClick={() => window.location.href = "/"}>Cancel</button>
                 </div>
             </form>
         

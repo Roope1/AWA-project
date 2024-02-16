@@ -65,7 +65,7 @@ router.post('/login', async (req: Request, res: Response, next: NextFunction) =>
             jwtPayload,
             process.env.SECRET as jwt.Secret,
             {
-                expiresIn: 900
+                expiresIn: 3600
             },
             (err, token) => {
                 res.json({success: true, token: token})

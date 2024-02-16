@@ -97,13 +97,13 @@ router.post('/bio', (req: Request, res: Response, next: NextFunction) => {
 
 /* Posting new image */
 router.post('/image', upload.single('avatar'), (req: Request, res: Response, next: NextFunction) => {
-    if (!req.file) res.sendStatus(403); 
+    if (!req.file) return res.sendStatus(403); 
     
     let newAvatar = new Avatar({
-        name: req.file?.originalname,
-        encoding: req.file?.encoding,
-        mimetype: req.file?.mimetype,
-        buffer: req.file?.buffer,
+        name: req.file.originalname,
+        encoding: req.file.encoding,
+        mimetype: req.file.mimetype,
+        buffer: req.file.buffer,
     })
     let promise: Promise<Avatar> = newAvatar.save()
 
@@ -132,9 +132,12 @@ router.get('/image/:id', (req: Request, res: Response, next: NextFunction) => {
     Avatar.findOne({_id: req.params.id})
     .then((avatar: Avatar | null) => {
         if (avatar) {
-            const b64 = Buffer.from(avatar.buffer as Buffer).toString('base64')
+            const b64 = Buffer.from((avatar.buffer as Buffer)).toString('base64')
             return res.status(200).send({ image :`data:${avatar.mimetype};base64,${b64}`})
         }
+    }).catch((err) => {
+        console.log(err)
+        res.sendStatus(404);
     })
 });
 
