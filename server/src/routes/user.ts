@@ -1,7 +1,12 @@
 import express, { NextFunction, Request, Response } from "express";
 var router = express.Router();
-
+import multer from 'multer';
 import { User } from "../models/User"
+import { Avatar } from "../models/Avatar";
+import { ObjectId } from "mongoose";
+
+const upload = multer();
+
 
 /* Authenticate user */
 router.get('/', (req: Request, res: Response, next: NextFunction) => {
@@ -79,5 +84,40 @@ router.post('/like', async (req: Request, res: Response, next: NextFunction) => 
     await (authUser as any).save()
     res.json({msg: "ok"});
 })
+
+router.post('/bio', (req: Request, res: Response, next: NextFunction) => {
+    User.findOne({username: req.user})
+    .then((user: User | null) => {
+        if (user){
+            user.bio = req.body.bio;
+            user.save();
+        }
+    })
+    res.sendStatus(200)
+});
+
+router.post('/image', upload.single('avatar'), (req: Request, res: Response, next: NextFunction) => {
+    if (!req.file) res.sendStatus(403); 
+    
+    let newAvatar = new Avatar({
+        name: req.file?.originalname,
+        encoding: req.file?.encoding,
+        mimetype: req.file?.mimetype,
+        buffer: req.file?.buffer,
+    })
+    let promise: Promise<Avatar> = newAvatar.save()
+
+    promise.then((newAvatar: Avatar) => {
+        User.findOne({ username: req.user })
+        .then((user: User | null) => {
+            if (user){
+                // TODO: delete previous picture if any
+                user.profilePic = newAvatar.id as any // idk why this doesn't work if its not as any, but it works! actual type is ObjectId
+                user.save()
+                res.sendStatus(200);
+            }
+        })
+    })
+});
 
 module.exports = router;

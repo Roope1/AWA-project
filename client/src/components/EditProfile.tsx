@@ -31,7 +31,7 @@ const EditProfile = () => {
     const handleChange = (e: ChangeEvent<HTMLFormElement>) => {
         console.log(e.target.name);
         if (e.target.name === "avatar") {
-            setProfileData({...profileData, ["previewAvatar"]: URL.createObjectURL(e.target.files[0]), [e.target.name]: e.target.value})
+            setProfileData({...profileData, ["previewAvatar"]: URL.createObjectURL(e.target.files[0]), [e.target.name]: e.target.files[0]})
         } else {
           setProfileData({...profileData, [e.target.name]: e.target.value})
         }
@@ -39,17 +39,34 @@ const EditProfile = () => {
 
     const submit = (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        let form = new FormData();
-        form.append("image", (profileData as any).avatar);
-        form.append("bio", (profileData as any).bio);
 
-        fetch('/user/edit', {
+        let form = new FormData();
+        form.append("avatar", (profileData as any).avatar);
+
+        // Post image
+        fetch('/user/image', {
           method: "POST",
           headers: {
             "authorization": "Bearer " + auth_token,
           },
-          body: form
-        })        
+          body: form,
+          mode: "cors"
+        })
+        .then(() => {
+          // post bio
+          fetch('/user/bio', {
+            method: "POST",
+            headers: {
+              "authorization": "Bearer " + auth_token,
+              "Content-type": "application/json",
+            },
+            body: JSON.stringify({"bio": (profileData as any).bio}),
+            mode: "cors"
+          })
+        })
+
+        
+        
     }
     
 
