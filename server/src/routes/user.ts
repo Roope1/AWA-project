@@ -115,10 +115,14 @@ router.post('/image', upload.single('avatar'), (req: Request, res: Response, nex
         User.findOne({ username: req.user })
         .then((user: User | null) => {
             if (user){
-                // TODO: delete previous picture if any
-                user.profilePic = newAvatar.id as any // idk why this doesn't work if its not as any, but it works! actual type is ObjectId
-                user.save()
-                res.sendStatus(200);
+                // delete previous picture if exists
+                console.log("finding and deleting ", user.profilePic as string)
+                Avatar.deleteOne({_id: user.profilePic})
+                .then(() => {
+                    user.profilePic = newAvatar.id as any // idk why this doesn't work if its not as any, but it works! actual type is ObjectId
+                    user.save()
+                    res.sendStatus(200);
+                })
             }
         })
     })
