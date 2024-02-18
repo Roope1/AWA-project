@@ -56,8 +56,7 @@ router.post('/reject', async (req: Request, res: Response, next: NextFunction) =
     if (!authUser) throw new Error;
     authUser.dismiss.push(req.body._id);
 
-    // saved as "any"-type because the User interface doesn't recognize the save methdod
-    await (authUser as any).save()
+    await authUser.save();
     res.sendStatus(200);
 })
 
@@ -73,14 +72,19 @@ router.post('/like', async (req: Request, res: Response, next: NextFunction) => 
     if (!likedUser) throw new Error;
 
   
-    if (likedUser.like.includes((authUser as any)._id))  {
+    if (likedUser.like.includes(authUser.id))  {
         // instant match
-        res.status(200).json({msg: "match"})
+        // save the match to both participants
+        authUser.match.push(likedUser.id);
+        likedUser.match.push(authUser.id);
+
+        likedUser.save()
+        authUser.save()
+        console.log(authUser.username, likedUser.username, "matched");
+        return res.status(200).json({msg: "match"})
     }
 
-    
-    // saved as "any"-type because the User interface doesn't recognize the save methdod
-    await (authUser as any).save()
+    await authUser.save()
     res.json({msg: "ok"});
 })
 

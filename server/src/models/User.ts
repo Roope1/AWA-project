@@ -12,6 +12,7 @@ const userSchema = new Schema({
     password: { type: String, required: true },
     like: [ObjectId], 
     dismiss: [ObjectId], // seen but not liked
+    match: [ObjectId], // mutual likes
 }, { timestamps: true })
 
 export type User = HydratedDocument<InferSchemaType<typeof userSchema>>;
