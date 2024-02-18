@@ -8,7 +8,7 @@ const Profile = ({...props}) => {
   const auth_token = localStorage.getItem('auth_token');
 
   useEffect(() => {
-    fetch('/user/image/' + props.profilePic, {
+    fetch('/image/' + props.profilePic, {
       method: "GET",
       headers: {
         "authorization": "Bearer " + auth_token

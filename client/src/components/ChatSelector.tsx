@@ -6,7 +6,7 @@ const ChatSelector = ({...props}) => {
   const [image, setImage] = useState();
   
   useEffect(() => {
-    fetch('/user/image/' + props.profilePic, {
+    fetch('/image/' + props.profilePic, {
       method: "GET",
       headers: {
         "authorization": "Bearer " + localStorage.getItem('auth_token')

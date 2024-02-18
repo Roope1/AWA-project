@@ -44,7 +44,7 @@ const EditProfile = () => {
         form.append("avatar", (profileData as any).avatar);
 
         // Post image
-        fetch('/user/image', {
+        fetch('/image', {
           method: "POST",
           headers: {
             "authorization": "Bearer " + auth_token,

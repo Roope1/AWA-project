@@ -24,6 +24,7 @@ db.on('error', () => {
 // Routers
 const indexRouter = require('./routes/index')
 const userRouter = require('./routes/user')
+const imageRouter = require('./routes/image')
 
 const app = express()
 
@@ -34,6 +35,7 @@ app.use(cookieParser())
 
 app.use('/', indexRouter);
 app.use('/user', passport.authenticate('jwt', { session: false }), userRouter);
+app.use('/image', passport.authenticate('jwt', { session: false }), imageRouter);
 
 if (process.env.NODE_ENV === "production") {
     app.use(express.static(path.resolve("..", "client", "build")));
