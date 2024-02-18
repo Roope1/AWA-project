@@ -149,4 +149,24 @@ router.get('/image/:id', (req: Request, res: Response, next: NextFunction) => {
     })
 });
 
+
+router.get('/matches', (req: Request, res: Response, next: NextFunction) => {
+    User.findOne({ username: req.user})
+    .then((currentUser: User | null) => {
+        if (currentUser) {
+            console.log(currentUser.match)
+            // get all users from match list 
+            User.find({_id: {$in: currentUser.match}})
+            .then((users: Partial<User>[] | null) => { // partial array to be able to remove passwords
+                if (users) {
+                    // remove the password from the users
+                    users?.forEach(user => user.password = undefined)
+                    // send the users to frontend as json
+                    res.json(users)
+                }
+            })
+        }
+    })
+});
+
 module.exports = router;
