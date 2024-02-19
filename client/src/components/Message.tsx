@@ -8,6 +8,10 @@ const Message = ({...props}) => {
   const [profilePic, setProfilePic] = useState<any>();
 
   useEffect(() => {
+    if (props.message.authorId === undefined){
+      return
+    }
+
     fetch('/image/user/' + props.message.authorId, {
       method: "GET",
       headers: {
@@ -19,8 +23,14 @@ const Message = ({...props}) => {
       if (response.status !== 404){
         response.json()
         .then(data => setProfilePic(data.image))
-      } 
-    })}, [props.message.authorId])
+      } else {
+        setProfilePic(undefined)
+      }
+    })
+    .catch((error) => {
+      console.log('Error:', error);
+    })
+  }, [props.message.authorId])
 
 
   return (
