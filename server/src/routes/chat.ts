@@ -6,7 +6,6 @@ const router = express.Router();
 
 /* Get authenticated users chat with another person via id*/
 router.get('/:id', (req: Request, res: Response) => {
-    console.log("got params", req.params.id)
     if (!req.params.id) {
         return res.sendStatus(404);
     }
@@ -15,11 +14,9 @@ router.get('/:id', (req: Request, res: Response) => {
     User.findOne({ username: req.user })
         .then((user: User | null) => {
             if (user) {
-                console.log("found user", user.username)
                 // get the other user
                 User.findOne({ _id: req.params.id })
                     .then((otherUser: User | null) => {
-                        console.log("found other user", otherUser?.username)
                         if (otherUser) {
                             Chat.findOne({
                                 people: {
@@ -27,7 +24,6 @@ router.get('/:id', (req: Request, res: Response) => {
                                 }
                             })
                                 .then((chat: Chat | null) => {
-                                    console.log("found chat", chat)
                                     if (chat) {
                                         return res.status(200).json(chat);
                                     } else {
@@ -53,7 +49,7 @@ router.post('/message', (req: Request, res: Response) => {
             if (user) {
                 // create new message
                 let newMessage = new Message({
-                    author: user.id,
+                    author: user.username,
                     content: req.body.content,
                 })
                 let promise: Promise<Message> = newMessage.save();
@@ -70,6 +66,32 @@ router.post('/message', (req: Request, res: Response) => {
                         })
                 })
             }
+        });
+});
+
+/**
+ * Get messages from chat via chat id
+ */
+router.get('/messages/:id', (req: Request, res: Response) => {
+    if (req.params.id === "undefined") {
+        return res.sendStatus(404);
+    }
+    Chat.findOne({ _id: req.params.id })
+        .then((chat: Chat | null) => {
+            if (chat) {
+                Message.find({ _id: { $in: chat.messages } })
+                .then((messages: Message[]) => {
+                    return res.status(200).json(messages);
+                })
+                .catch((err) => {
+                    console.log(err);
+                    res.sendStatus(404);
+                });
+            }
+        })
+        .catch((err) => {
+            console.log(err);
+            res.sendStatus(404);
         });
 });
 
