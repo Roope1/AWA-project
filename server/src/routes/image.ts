@@ -49,11 +49,44 @@ router.get('/:id', (req: Request, res: Response, next: NextFunction) => {
         if (avatar) {
             const b64 = Buffer.from((avatar.buffer as Buffer)).toString('base64')
             return res.status(200).send({ image :`data:${avatar.mimetype};base64,${b64}`})
+        } else {
+            return res.sendStatus(404);
         }
     }).catch((err) => {
         console.log(err)
         res.sendStatus(404);
     })
+});
+
+// get image via user id
+router.get('/user/:userId', (req: Request, res: Response, next: NextFunction) => {
+    if (req.params.userId === "undefined") {
+        return res.sendStatus(404);
+    }
+    res.set({
+        'Content-Disposition': "inline",
+        "Content-type": "application/json"
+    })
+    User.findById(req.params.userId)
+    .then((user: User | null) => {
+        if (user) {
+            if (user.profilePic) {
+                Avatar.findOne({_id: user.profilePic})
+                .then((avatar: Avatar | null) => {
+                    if (avatar) {
+                        const b64 = Buffer.from((avatar.buffer as Buffer)).toString('base64')
+                        return res.status(200).send({ image :`data:${avatar.mimetype};base64,${b64}`})
+                    } else {
+                        return res.sendStatus(404);
+                    }
+                })
+            } else {
+                return res.sendStatus(404);
+            }
+        }
+
+    })
+
 });
 
 module.exports = router;

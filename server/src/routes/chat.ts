@@ -49,6 +49,7 @@ router.post('/message', (req: Request, res: Response) => {
             if (user) {
                 // create new message
                 let newMessage = new Message({
+                    authorId: user.id,
                     author: user.username,
                     content: req.body.content,
                 })

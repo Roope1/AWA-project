@@ -13,6 +13,7 @@ const Chat = ({...props}) => {
     }
 
     interface IMessage {
+      authorId: string,
       author: string,
       content: string
     }
@@ -35,30 +36,28 @@ const Chat = ({...props}) => {
         if (res.status === 401) {
           window.location.href = '/login'
         }
-        if (res.status !== 304) { // only update if the data has changed
-          res.json()
-          .then(data => {
-            console.log(data)
-            setChat(data)
-            fetch('/chat/messages/' + data._id, {
-              method: "GET",
-              headers: {
-                "authorization": "Bearer " + auth_token,
-              },
-              mode: "cors"
-            })
-            .then((res: Response) => res.json())
-            .then(data => {
-              console.log(data)
-              setMessages(data)
-            })
+        res.json()
+        .then(data => {
+          setChat(data)
+          fetch('/chat/messages/' + data._id, {
+            method: "GET",
+            headers: {
+              "authorization": "Bearer " + auth_token,
+            },
+            mode: "cors"
+          })
+          .then((res: Response) => {
+              res.json()
+              .then(data => {
+                setMessages(data)
+              }
+            )
           })      
-        }
       })
-    }, [trigger])
+    })
+    }, [trigger, props.id])
 
     const sendMessage = () => {
-      console.log("Sending message")
       fetch('/chat/message', {
         method: "POST",
         headers: {

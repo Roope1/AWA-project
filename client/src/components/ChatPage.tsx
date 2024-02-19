@@ -20,7 +20,6 @@ const ChatPage = () => {
         })
         .then(response => response.json())
         .then(data => {
-            console.log(data)
             setMatches(data)
         })
         .catch((error) => {
@@ -36,16 +35,16 @@ const ChatPage = () => {
             </div>
             <div className='grow overflow-y-scroll'>
                 {matches ? matches.map((match, index) => (
-                    <ChatSelector {...match} index={index} setSelectedChat={setSelectedChat}/>
+                    <ChatSelector key={index} {...match} index={index} setSelectedChat={setSelectedChat}/>
                 
                 )): <p>No matches</p>} 
             </div>
         </div>
-        <div className='h-full border w-full'>
+        <div className='h-full border w-full flex flex-col'>
             <h2> Chat </h2>
             {!selectedChat ?
             <p>Select a match from left to start chatting</p> :
-            <Chat id={selectedChat}/>} {/* TODO: change to some chat component which actually allows for chatting */}
+            <Chat id={selectedChat}/>} 
             
         </div>
     </div>
