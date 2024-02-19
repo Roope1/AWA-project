@@ -21,6 +21,7 @@ const Chat = ({...props}) => {
     const [chat, setChat] = useState<IChat>();
     const [messages, setMessages] = useState<IMessage[]>([]);
     const [newMessage, setNewMessage] = useState('');
+    const [trigger, setTrigger] = useState(Date.now())
     
     useEffect(() => {
       fetch('/chat/' + props.id, {
@@ -54,7 +55,7 @@ const Chat = ({...props}) => {
           })      
         }
       })
-    }, [])
+    }, [trigger])
 
     const sendMessage = () => {
       console.log("Sending message")
@@ -70,6 +71,10 @@ const Chat = ({...props}) => {
           content: newMessage
         })
       })
+      .then(() => {
+        setTrigger(Date.now())
+        setNewMessage('')
+      })
     }
 
     const handleChange = (event: { target: { value: React.SetStateAction<string>; }; }) => {
@@ -77,23 +82,23 @@ const Chat = ({...props}) => {
     }
 
   return (
-    <div>
-      <div>
-      {/** Top bar with the name of person were chatting with */}
-      <h1>{props.id}</h1> {/* Later get this from backend via the id */}
+    <>
+      <div className='flex flex-col'>
+        {/** Top bar with the name of person were chatting with */}
+        <h1>{props.id}</h1> {/* Later get this from backend via the id */}
       </div>
-      <div>
-      {/** Chat messages */}
-      {messages ? messages.map((message, index) => (
-        <Message key={index} message={message}/>
-      )): <p>No messages</p>}
+      <div className='flex flex-col'>
+        <div className='overflow-y-scroll'> {/** Chat messages */}
+        {messages ? messages.map((message, index) => (
+          <Message key={index} message={message}/>
+          )): <p>No messages</p>}
+        </div>
+        <div className='flex flex-row'> {/** Input box for typing messages */}
+          <textarea className='w-full' onChange={handleChange} value={newMessage}></textarea> 
+          <button onClick={sendMessage}>Send</button>
+        </div>
       </div>
-      <div className='flex flex-row'>
-        {/** Input box for typing messages */}
-        <textarea className='w-full' onChange={handleChange}></textarea> 
-        <button onClick={sendMessage}>Send</button>
-      </div>
-    </div>
+    </>
 
   )
 }
