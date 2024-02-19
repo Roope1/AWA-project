@@ -6,6 +6,10 @@ const ChatSelector = ({...props}) => {
   const [image, setImage] = useState();
   
   useEffect(() => {
+    if (props.profilePic === undefined){
+      return
+    }
+
     fetch('/image/' + props.profilePic, {
       method: "GET",
       headers: {
@@ -18,7 +22,11 @@ const ChatSelector = ({...props}) => {
         response.json()
         .then(data => setImage(data.image))
       } 
-    })}, [props])
+    })
+    .catch((error) => {
+      console.error('Error:', error);
+    });
+  }, [props])
 
   return (
     <div key={props.index} onClick={() => props.setSelectedChat(props._id)} className='bg-accent my-2 border-y-2 flex flex-row '>
