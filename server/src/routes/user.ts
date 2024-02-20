@@ -118,4 +118,16 @@ router.get('/matches', (req: Request, res: Response, next: NextFunction) => {
     })
 });
 
+// get username by id
+router.get('/username/:id', (req: Request, res: Response, next: NextFunction) => {
+    User.findById(req.params.id)
+    .then((user: User | null) => {
+        if (user) {
+            res.json({username: user.username})
+        } else {
+            res.sendStatus(404);
+        }
+    })
+})
+
 module.exports = router;
