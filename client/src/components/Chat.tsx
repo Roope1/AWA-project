@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import Message from './Message';
+import ChatTopBar from './ChatTopBar';
 
 const Chat = ({...props}) => {
 
@@ -84,7 +85,7 @@ const Chat = ({...props}) => {
     <>
       <div className='flex flex-col'>
         {/** Top bar with the name of person were chatting with */}
-        <h1>{props.id}</h1> {/* Later get this from backend via the id */}
+        <ChatTopBar id={props.id}/>
       </div>
       <div className='flex flex-col'>
         <div className='overflow-y-scroll'> {/** Chat messages */}
@@ -92,9 +93,10 @@ const Chat = ({...props}) => {
           <Message key={index} message={message}/>
           )): <p>No messages</p>}
         </div>
-        <div className='flex flex-row'> {/** Input box for typing messages */}
+        <div className='flex flex-row'> {/** Input box for typing messages
+                                          *  TODO: dock this to bottom */}
           <textarea className='w-full' onChange={handleChange} value={newMessage}></textarea> 
-          <button onClick={sendMessage}>Send</button>
+          <button onClick={sendMessage} className='ml-2 px-4 bg-accent hover:bg-main hover:text-white transition-all'>Send</button>
         </div>
       </div>
     </>
