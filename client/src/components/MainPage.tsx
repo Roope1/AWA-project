@@ -32,9 +32,9 @@ const MainPage = () => {
   
   return (
     <div>
-      <div className='grid grid-cols-2 w-screen py-10 text-white text-3xl'>
-        <button className='bg-main rounded-xl p-10 m-10' onClick={() => window.location.href = '/chat'}>Chats</button>
-        <button className='bg-main rounded-xl p-10 m-10' onClick={() => window.location.href = '/swipe'}>Start Swiping</button>
+      <div className='lg:grid lg:grid-cols-2 sm:flex sm:flex-col sm:gap-2 w-screen py-10 text-white text-3xl'>
+        <button className='bg-main rounded-xl lg:p-10 lg:m-10 sm:mx-2' onClick={() => window.location.href = '/chat'}>Chats</button>
+        <button className='bg-main rounded-xl lg:p-10 lg:m-10 sm:mx-2' onClick={() => window.location.href = '/swipe'}>Start Swiping</button>
       </div>
       <div className='flex flex-col items-center justify-center'>
         <Profile {...profileData} />
