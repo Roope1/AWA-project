@@ -26,7 +26,6 @@ const RegisterPage = () => {
                 window.location.href = '/login';
             } else {
                 res.json().then(data => setErrorMsg(data.msg))
-                console.log("fucked up", res)
             }
         })
         
@@ -34,7 +33,7 @@ const RegisterPage = () => {
     }
 
     return (
-        <div className='flex flex-col justify-center items-center w-1/2 h-2/3 m-auto border-4 border-secondary rounded bg-secondary'>
+        <div className='flex flex-col justify-center items-center lg:w-1/2 h-2/3 sm:w-3/4 m-auto border-4 border-secondary rounded bg-secondary'>
             <form onChange={handleChange} onSubmit={handleSubmit}>
                 <div className='flex flex-col'>
                     <label htmlFor="name"> Name </label>

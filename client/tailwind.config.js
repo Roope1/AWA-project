@@ -5,6 +5,9 @@ module.exports = {
   ],
   theme: {
     extend: {
+      screens: {
+        'sm': '180px',
+      },
       backgroundImage: {
         'mountain': "url('./images/mountain.jpg')"
       },
