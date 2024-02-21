@@ -16,9 +16,11 @@ const Profile = ({...props}) => {
       mode: "cors"
     })
     .then((response: Response) => {
-      if (response.status != 404){
+      if (response.status != 404 && response.status != 401){
         response.json()
         .then(data => setImage(data.image))
+      } else if(response.status === 401){
+        window.location.href = '/login'
       } 
     })
       
