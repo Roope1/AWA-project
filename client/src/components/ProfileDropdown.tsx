@@ -18,7 +18,7 @@ const ProfileDropdown = (props: { username: string }) => {
         <select onChange={(event) => handleChange(event.target.value)} defaultValue={"username"}>
             <option value="username" disabled>{props.username}</option>
             <option value="edit">Edit Profile</option>
-            <option disabled>----------------------</option>
+            <option disabled>-----------------</option>
             <option value="logout">Logout</option>
             
         </select>
