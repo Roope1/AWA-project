@@ -73,7 +73,7 @@ const EditProfile = () => {
     return (
         <div className='flex flex-col justify-center items-center w-full h-full'>
             <form className='w-2/3' onSubmit={submit} onChange={handleChange}>
-                <div className='my-10 grid grid-cols-2'>
+                <div className='my-10 lg:grid lg:grid-cols-2'>
                   <div className='m-auto'>
                     <label htmlFor="avatar">Profile picture:</label>
                     <input type="file" name="avatar" />
@@ -89,7 +89,7 @@ const EditProfile = () => {
                 </div>
             </form>
         
-            <div className='my-auto flex items-center justify-center h-2/3 w-2/3'>
+            <div className='my-auto flex items-center justify-center lg:h-2/3 lg:w-2/3'>
                 <Profile {...profileData}/>
             </div>
         </div>

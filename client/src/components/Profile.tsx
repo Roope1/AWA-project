@@ -25,7 +25,7 @@ const Profile = ({...props}) => {
   }, [props.profilePic])
 
   return (
-    <div className='w-[64rem] h-[32rem] bg-secondary grid grid-cols-2 '>
+    <div className='lg:w-[64rem] lg:h-[32rem] bg-secondary grid lg:grid-cols-2 sm:grid-rows-2 '>
         <div className='h-full m-auto'>
           <img className="h-5/6 mt-10" src= {props.previewAvatar ?? image ?? avatar} alt="avatar" /> 
           <h1 className='relative text-4xl'>{props.username}</h1>

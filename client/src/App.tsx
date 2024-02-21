@@ -10,7 +10,7 @@ import ChatPage from './components/ChatPage';
 function App() {
   return (
     <Router>
-      <div className="App flex flex-col w-screen h-screen bg-background">
+      <div className="App flex flex-col w-screen lg:h-screen sm:min-h-screen sm:h-full bg-background">
         <TopBar />
         <Routes>
           <Route path='/' element = { <MainPage /> }/>
