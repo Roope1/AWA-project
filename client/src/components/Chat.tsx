@@ -51,6 +51,12 @@ const Chat = ({...props}) => {
               res.json()
               .then(data => {
                 setMessages(data)
+                // scroll messages to bottom
+                let messages = document.getElementById('messages')
+                messages?.scrollTo(
+                  {
+                    top: messages.scrollHeight,
+                  });
               }
             )
           })      
@@ -87,7 +93,7 @@ const Chat = ({...props}) => {
       {/** Top bar with the name of person were chatting with */}
         <ChatTopBar id={props.id} setSelectedChat={props.setSelectedChat}/>
       </div>
-      <div className='overflow-y-scroll lg:h-full sm:h-[32rem] mt-auto'> {/** Chat messages */}
+      <div className='overflow-y-scroll lg:h-full sm:h-[32rem] mt-auto' id="messages"> {/** Chat messages */}
       {messages ? messages.map((message, index) => (
         <Message key={index} message={message}/>
         )): <p>No messages</p>}
