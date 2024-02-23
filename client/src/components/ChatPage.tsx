@@ -29,7 +29,7 @@ const ChatPage = () => {
 
   return (
     <div className='w-2/3 h-2/3 bg-secondary rounded m-auto flex flex-row'>
-        <div className={`h-full border lg:w-1/3 flex flex-col sm:${selectedChat ? 'hidden' : ''}`}>
+        <div className={`h-full border lg:w-1/3 lg:flex flex-col ${selectedChat ? 'sm:hidden' : ''}`}>
             <div className='text-center bg-main text-white'>
                 <h2 className='text-2xl py-2'> Chats </h2> {/* Top bar */}
             </div>
@@ -39,7 +39,7 @@ const ChatPage = () => {
                 )): <p>No matches</p>} 
             </div>
         </div>
-        <div className={`h-full w-full flex flex-col sm:${selectedChat ? '' : 'hidden'}`}>
+        <div className={`h-full w-full lg:flex lg:flex-col ${selectedChat ? '' : 'sm:hidden'}`}>
             {!selectedChat ?
             <p className='m-auto'>Select a match from left to start chatting</p> :
             <Chat id={selectedChat} setSelectedChat={setSelectedChat}/>} 
