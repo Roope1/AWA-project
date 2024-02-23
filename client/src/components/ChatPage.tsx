@@ -4,7 +4,7 @@ import Chat from './Chat';
 
 const ChatPage = () => {
     const [matches, setMatches] = useState([{}]);
-    const [selectedChat, setSelectedChat] = useState('');
+    const [selectedChat, setSelectedChat] = useState();
 
     const auth_token = localStorage.getItem('auth_token')
 
@@ -29,21 +29,20 @@ const ChatPage = () => {
 
   return (
     <div className='w-2/3 h-2/3 bg-secondary rounded m-auto flex flex-row'>
-        <div className='h-full border w-1/3 flex flex-col'>
+        <div className={`h-full border lg:w-1/3 flex flex-col sm:${selectedChat ? 'hidden' : ''}`}>
             <div className='text-center bg-main text-white'>
                 <h2 className='text-2xl py-2'> Chats </h2> {/* Top bar */}
             </div>
-            <div className='grow overflow-y-scroll'>
+            <div className={`grow overflow-y-scroll `}>
                 {matches ? matches.map((match, index) => (
                     <ChatSelector key={index} {...match} index={index} setSelectedChat={setSelectedChat}/>
                 )): <p>No matches</p>} 
             </div>
         </div>
-        <div className='h-full w-full flex flex-col'>
+        <div className={`h-full w-full flex flex-col sm:${selectedChat ? '' : 'hidden'}`}>
             {!selectedChat ?
             <p className='m-auto'>Select a match from left to start chatting</p> :
-            <Chat id={selectedChat}/>} 
-            
+            <Chat id={selectedChat} setSelectedChat={setSelectedChat}/>} 
         </div>
     </div>
   )

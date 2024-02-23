@@ -18,10 +18,15 @@ const ChatTopBar = ({...props}) => {
         }
     )
     }, [props.id])
+    
+    const handleBack = () => {
+        props.setSelectedChat(undefined)
+    }
 
   return (
     <div className='bg-accent flex flex-row justify-between py-2'>
         <h1 className='text-2xl mx-2'>{name}</h1>
+        <a className='text-2xl mx-2' onClick={handleBack}>{'<'}</a>
     </div>
   )
 }
