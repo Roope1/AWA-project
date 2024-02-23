@@ -16,7 +16,7 @@ const Profile = ({...props}) => {
       mode: "cors"
     })
     .then((response: Response) => {
-      if (response.status != 404 && response.status != 401){
+      if (response.status !== 404 && response.status !== 401){
         response.json()
         .then(data => setImage(data.image))
       } else if(response.status === 401){
@@ -24,11 +24,11 @@ const Profile = ({...props}) => {
       } 
     })
       
-  }, [props.profilePic])
+  }, [props.profilePic, auth_token])
 
   return (
     <div className='lg:w-[64rem] lg:h-[32rem] bg-secondary grid lg:grid-cols-2 sm:grid-rows-2 '>
-        <div className='h-full m-auto'>
+        <div className='lg:h-[30rem] sm:h-full m-auto'>
           <img className="h-5/6 mt-10" src= {props.previewAvatar ?? image ?? avatar} alt="avatar" /> 
           <h1 className='relative text-4xl'>{props.username}</h1>
         </div>

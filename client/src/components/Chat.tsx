@@ -56,7 +56,7 @@ const Chat = ({...props}) => {
           })      
       })
     })
-    }, [trigger, props.id])
+    }, [trigger, props.id, auth_token])
 
     const sendMessage = () => {
       fetch('/chat/message', {
@@ -82,25 +82,21 @@ const Chat = ({...props}) => {
     }
 
   return (
-    <>
+    <div className='flex flex-col h-full justify-between'>
       <div className='flex flex-col'>
-        {/** Top bar with the name of person were chatting with */}
+      {/** Top bar with the name of person were chatting with */}
         <ChatTopBar id={props.id}/>
       </div>
-      <div className='flex flex-col'>
-        <div className='overflow-y-scroll'> {/** Chat messages */}
-        {messages ? messages.map((message, index) => (
-          <Message key={index} message={message}/>
-          )): <p>No messages</p>}
-        </div>
-        <div className='flex flex-row'> {/** Input box for typing messages
-                                          *  TODO: dock this to bottom */}
-          <textarea className='w-full' onChange={handleChange} value={newMessage}></textarea> 
-          <button onClick={sendMessage} className='ml-2 px-4 bg-accent hover:bg-main hover:text-white transition-all'>Send</button>
-        </div>
+      <div className='overflow-y-scroll mt-auto'> {/** Chat messages */}
+      {messages ? messages.map((message, index) => (
+        <Message key={index} message={message}/>
+        )): <p>No messages</p>}
       </div>
-    </>
-
+      <div className='flex flex-row'> {/** Input box for typing messages */}
+        <textarea className='w-full' onChange={handleChange} value={newMessage}></textarea> 
+        <button onClick={sendMessage} className='ml-2 px-4 bg-accent hover:bg-main hover:text-white transition-all'>Send</button>
+      </div>
+    </div>
   )
 }
 
