@@ -6,11 +6,6 @@ import bcrypt from 'bcrypt';
 import jwt, { Jwt } from 'jsonwebtoken';
 
 
-router.get('/', function (req: Request, res: Response) {
-    res.status(200).send("ok");
-})
-
-
 // register
 router.post('/register', async (req: Request, res: Response, next: NextFunction) => {
     console.log(req.body)

@@ -18,7 +18,7 @@ function App() {
           <Route path='/register' element = { <RegisterPage />} />
           <Route path='/swipe' element = { <SwipePage />} />
           <Route path='/edit' element = {<EditProfile />} />
-          <Route path='/chat' element = {<ChatPage />} />
+          <Route path='/chats' element = {<ChatPage />} />
         </Routes>
       </div>
     </Router>
