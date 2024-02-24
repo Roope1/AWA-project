@@ -88,12 +88,8 @@ const Chat = ({...props}) => {
     }
 
   return (
-    <div className='flex flex-col h-full justify-between'>
-      <div className='flex flex-col'>
-      {/** Top bar with the name of person were chatting with */}
-        <ChatTopBar id={props.id} setSelectedChat={props.setSelectedChat}/>
-      </div>
-      <div className='overflow-y-scroll lg:h-full sm:h-[32rem] mt-auto' id="messages"> {/** Chat messages */}
+    <div className='flex flex-col h-full justify-between '>
+      <div className='overflow-y-scroll lg:h-full sm:h-[32rem] mt-auto ' id="messages"> {/** Chat messages */}
       {messages ? messages.map((message, index) => (
         <Message key={index} message={message}/>
         )): <p>No messages</p>}

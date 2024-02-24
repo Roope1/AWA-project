@@ -28,18 +28,18 @@ const ChatPage = () => {
     }, [auth_token])
 
   return (
-    <div className='w-2/3 h-2/3 bg-secondary rounded m-auto flex flex-row'>
+    <div className='w-2/3 h-2/3 bg-secondary m-auto flex flex-row'>
         <div className={`h-full border lg:w-1/3 lg:flex flex-col ${selectedChat ? 'sm:hidden' : ''}`}>
-            <div className='text-center bg-main text-white'>
-                <h2 className='text-2xl py-2'> Chats </h2> {/* Top bar */}
+            <div className='text-center bg-black text-white'>
+                <h2 className='text-2xl text-magenta py-2'> Chats </h2> {/* Top bar */}
             </div>
-            <div className={`grow overflow-y-scroll `}>
+            <div className={`grow overflow-y-scroll bg-gradient-to-b from-orange to-orange-gradient `}>
                 {matches ? matches.map((match, index) => (
                     <ChatSelector key={index} {...match} index={index} setSelectedChat={setSelectedChat}/>
                 )): <p>No matches</p>} 
             </div>
         </div>
-        <div className={`h-full w-full lg:flex lg:flex-col ${selectedChat ? '' : 'sm:hidden'}`}>
+        <div className={`h-full w-full lg:flex lg:flex-col bg-gradient-to-b from-magenta to-magenta-gradient ${selectedChat ? '' : 'sm:hidden'}`}>
             {!selectedChat ?
             <p className='m-auto'>Select a match from left to start chatting</p> :
             <Chat id={selectedChat} setSelectedChat={setSelectedChat}/>} 

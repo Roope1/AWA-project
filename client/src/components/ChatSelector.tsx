@@ -29,7 +29,7 @@ const ChatSelector = ({...props}) => {
   }, [props])
 
   return (
-    <div key={props.index} onClick={() => props.setSelectedChat(props._id)} className='bg-accent my-2 py-2 flex flex-row '>
+    <div key={props.index} onClick={() => props.setSelectedChat(props._id)} className='bg-magenta my-2 py-2 flex flex-row '>
         <img src={image ?? avatar} alt="avatar" className='w-1/5 rounded-full mx-2'/>
         <h1 className='my-auto text-lg'>{props.username}</h1>
     </div>

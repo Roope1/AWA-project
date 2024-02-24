@@ -34,7 +34,7 @@ const Message = ({...props}) => {
 
 
   return (
-    <div className='border border-red-500 flex flex-row mt-2'>
+    <div className='flex flex-row mt-2'>
         <img className='w-12 rounded-full mx-2' src={profilePic ?? avatar} alt="avatar"/>
         <div className=''>
             <p className='font-bold'>{props.message.author}</p>
