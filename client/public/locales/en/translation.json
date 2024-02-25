@@ -13,5 +13,7 @@
     "select-chat": "Select a chat to start messaging",
     "edit-profile": "Edit Profile",
     "logout": "Logout",
-    "send": "Send"
+    "send": "Send",
+    "save": "Save",
+    "cancel": "Cancel"
 }

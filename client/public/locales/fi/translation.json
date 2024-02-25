@@ -13,5 +13,7 @@
     "select-chat": "Valitse keskustelu",
     "edit-profile": "Muokkaa profiilia",
     "logout": "Kirjaudu ulos",
-    "send": "Lähetä"
+    "send": "Lähetä",
+    "save": "Tallenna",
+    "cancel": "Peruuta"
 }

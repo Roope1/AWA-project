@@ -1,10 +1,14 @@
 import React, { ChangeEvent, FormEvent, useEffect, useState } from 'react'
 import Profile from './Profile'
+import { useTranslation } from 'react-i18next';
 
 const EditProfile = () => {
 
     let auth_token: string | null = localStorage.getItem('auth_token');
     const [profileData, setProfileData] = useState({})
+
+    const { t } = useTranslation();
+
 
     useEffect(() => {
         if (!auth_token) window.location.href = '/login';
@@ -64,9 +68,6 @@ const EditProfile = () => {
             mode: "cors"
           })
         })
-
-        
-        
     }
     
 
@@ -84,8 +85,8 @@ const EditProfile = () => {
                   </div>
                 </div>
                 <div className='flex flex-col justify-center items-center  gap-2'>
-                  <input className='bg-accent py-4 px-6 rounded hover:cursor-pointer' type="submit" name="submit" value="Save"/>
-                  <button className='bg-main py-4 px-6 rounded text-background' onClick={() => window.location.href = "/"}>Cancel</button>
+                  <input className='bg-accent py-4 px-6 rounded hover:cursor-pointer' type="submit" name="submit" value={t("save")}/>
+                  <button className='bg-main py-4 px-6 rounded text-background' onClick={() => window.location.href = "/"}>{t("cancel")}</button>
                 </div>
             </form>
         
