@@ -1,8 +1,11 @@
 import React from 'react'
+import { useTranslation } from 'react-i18next';
 
 const ProfileDropdown = (props: { username: string }) => {
 
     // TODO: styling
+
+    const { t } = useTranslation();
 
     const handleChange = (value: string) => {
         if (value === "logout") {
@@ -17,9 +20,9 @@ const ProfileDropdown = (props: { username: string }) => {
     <div>
         <select onChange={(event) => handleChange(event.target.value)} defaultValue={"username"}>
             <option value="username" disabled>{props.username}</option>
-            <option value="edit">Edit Profile</option>
+            <option value="edit">{t("edit-profile")}</option>
             <option disabled>-----------------</option>
-            <option value="logout">Logout</option>
+            <option value="logout">{t("logout")}</option>
             
         </select>
     </div>

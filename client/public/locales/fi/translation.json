@@ -10,5 +10,8 @@
     "start-swipe": "Aloita Swaippailu",
     "bio": "Bio",
     "no-matches": "Ei matcheja vielä",
-    "select-chat": "Valitse keskustelu"
+    "select-chat": "Valitse keskustelu",
+    "edit-profile": "Muokkaa profiilia",
+    "logout": "Kirjaudu ulos",
+    "send": "Lähetä"
 }

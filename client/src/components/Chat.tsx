@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import Message from './Message';
 import ChatTopBar from './ChatTopBar';
+import { useTranslation } from 'react-i18next';
 
 const Chat = ({...props}) => {
 
@@ -18,6 +19,8 @@ const Chat = ({...props}) => {
       author: string,
       content: string
     }
+    
+    const { t } = useTranslation();
 
     const auth_token = localStorage.getItem('auth_token')
     const [chat, setChat] = useState<IChat>();
@@ -100,7 +103,7 @@ const Chat = ({...props}) => {
       </div>
       <div className='flex flex-row'> {/** Input box for typing messages */}
         <textarea className='w-full' onChange={handleChange} value={newMessage}></textarea> 
-        <button onClick={sendMessage} className='ml-2 px-4 bg-accent hover:bg-main hover:text-white transition-all'>Send</button>
+        <button onClick={sendMessage} className='ml-2 px-4 bg-accent hover:bg-main hover:text-white transition-all'>{t("send")}</button>
       </div>
     </div>
   )

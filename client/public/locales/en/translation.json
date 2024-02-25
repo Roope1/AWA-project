@@ -10,5 +10,8 @@
     "start-swipe": "Start Swiping",
     "bio": "Bio",
     "no-matches": "No matches yet",
-    "select-chat": "Select a chat to start messaging"
+    "select-chat": "Select a chat to start messaging",
+    "edit-profile": "Edit Profile",
+    "logout": "Logout",
+    "send": "Send"
 }
