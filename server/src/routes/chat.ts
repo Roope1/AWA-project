@@ -42,6 +42,7 @@ router.get('/:id', (req: Request, res: Response) => {
         });
 });
 
+/** Send new message */
 router.post('/message', (req: Request, res: Response) => {
     // get authenticated user
     User.findOne({ username: req.user })

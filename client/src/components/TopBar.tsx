@@ -10,6 +10,7 @@ export const TopBar = () => {
     const [lang, setLang] = useState('en')
     const {t, i18n} = useTranslation();
 
+    // change the language
     const changeLang = () => {
       if(lang === 'en'){
         i18n.changeLanguage('fi');
@@ -24,7 +25,7 @@ export const TopBar = () => {
     useEffect(() => {
 
       let auth_token: string | null = localStorage.getItem('auth_token');
-  
+      // get the user's profile data
       fetch('/user', {
         method: "GET",
         headers: {

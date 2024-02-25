@@ -9,7 +9,7 @@ const EditProfile = () => {
 
     const { t } = useTranslation();
 
-
+    // get the user's profile data
     useEffect(() => {
         if (!auth_token) window.location.href = '/login';
     

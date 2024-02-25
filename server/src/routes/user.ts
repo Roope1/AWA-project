@@ -49,7 +49,7 @@ router.get('/random', (req: Request, res: Response, next: NextFunction) => {
     })
 });
 
-
+/** Swiped left */
 router.post('/reject', async (req: Request, res: Response, next: NextFunction) => {
     let authUser: User | null = await User.findOne({ username: req.user })
     console.log(req.body)
@@ -60,6 +60,7 @@ router.post('/reject', async (req: Request, res: Response, next: NextFunction) =
     res.sendStatus(200);
 })
 
+/** Swiped right */
 router.post('/like', async (req: Request, res: Response, next: NextFunction) => {
     let authUser: User | null = await User.findOne({ username: req.user })
     console.log(req.body)
@@ -88,6 +89,7 @@ router.post('/like', async (req: Request, res: Response, next: NextFunction) => 
     res.json({msg: "ok"});
 })
 
+/** Bio edit */
 router.post('/bio', (req: Request, res: Response, next: NextFunction) => {
     User.findOne({username: req.user})
     .then((user: User | null) => {
@@ -99,6 +101,7 @@ router.post('/bio', (req: Request, res: Response, next: NextFunction) => {
     res.sendStatus(200)
 });
 
+/** Get all users matches */
 router.get('/matches', (req: Request, res: Response, next: NextFunction) => {
     User.findOne({ username: req.user})
     .then((currentUser: User | null) => {

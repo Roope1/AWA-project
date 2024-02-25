@@ -4,6 +4,7 @@ const ChatTopBar = ({...props}) => {
 
     const [name, setName] = useState<string>('');
 
+    // get the username of the user whom the chat is with
     useEffect(() => {
         fetch('/user/username/' + props.id, {
             method: 'GET',

@@ -17,7 +17,6 @@ const Login = () => {
 
     const handleLogin = (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        // TODO: post userInfo to backend once its built
         fetch('/login', {
             method: "POST",
             mode: 'cors',

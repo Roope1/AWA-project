@@ -2,6 +2,9 @@ import React from 'react'
 import Login from './Login'
 
 const LoginPage = () => {
+
+  /** Renders the login page */
+
   return (
     <div className='lg:grid lg:grid-cols-2 h-screen overflow-hidden'>
         <div className='bg-mountain bg-cover bg-center h-full w-full lg:flex justify-center items-center sm:hidden '>

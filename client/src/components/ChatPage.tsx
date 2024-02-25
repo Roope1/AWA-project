@@ -13,7 +13,6 @@ const ChatPage = () => {
 
     useEffect(() => {
         // get the matches form backend and modify matches state accordingly
-        //setMatches(["chat A", "chat B", "chat C", "chat D", "chat E", "chat F", "chat G", "chat H", "chat I", "chat J", "chat K" ])
         fetch('/user/matches', {
             method: "GET",
             headers: {

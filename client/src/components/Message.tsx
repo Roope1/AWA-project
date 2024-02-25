@@ -11,7 +11,8 @@ const Message = ({...props}) => {
     if (props.message.authorId === undefined){
       return
     }
-
+    
+    // get the profile picture of the user
     fetch('/image/user/' + props.message.authorId, {
       method: "GET",
       headers: {

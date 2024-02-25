@@ -8,6 +8,7 @@ const SwipePage = () => {
 
     const auth_token = localStorage.getItem("auth_token")
 
+    // get random user
     useEffect(() => {
         fetch('/user/random', {
             method: "GET",

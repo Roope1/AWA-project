@@ -5,6 +5,7 @@ import avatar from '../images/avatar.jpg'
 const ChatSelector = ({...props}) => {
   const [image, setImage] = useState();
   
+  // get the profile picture of the user
   useEffect(() => {
     if (props.profilePic === undefined){
       return

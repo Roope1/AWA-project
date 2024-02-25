@@ -11,6 +11,7 @@ const Profile = ({...props}) => {
   const { t } = useTranslation();
 
   useEffect(() => {
+    // get the profile picture of the user
     fetch('/image/' + props.profilePic, {
       method: "GET",
       headers: {

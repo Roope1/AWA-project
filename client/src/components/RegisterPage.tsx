@@ -11,8 +11,7 @@ const RegisterPage = () => {
 
     const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        console.log(JSON.stringify(registerData))
-        // check password match
+        // send new register data to server
         fetch('/register', {
             method: "POST",
             headers: {
@@ -28,8 +27,6 @@ const RegisterPage = () => {
                 res.json().then(data => setErrorMsg(data.msg))
             }
         })
-        
-        // send register to backend
     }
 
     return (

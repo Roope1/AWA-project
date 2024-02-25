@@ -2,11 +2,9 @@ import React from 'react'
 import { useTranslation } from 'react-i18next';
 
 const ProfileDropdown = (props: { username: string }) => {
-
-    // TODO: styling
-
     const { t } = useTranslation();
 
+    // handle the dropdown menu selections
     const handleChange = (value: string) => {
         if (value === "logout") {
             localStorage.removeItem("auth_token")

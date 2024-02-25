@@ -12,6 +12,7 @@ const MainPage = () => {
     let auth_token: string | null = localStorage.getItem('auth_token');
     if (!auth_token) window.location.href = '/login';
 
+    // get the user's profile data
     fetch('/user', {
       method: "GET",
       headers: {

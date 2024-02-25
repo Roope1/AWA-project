@@ -27,8 +27,9 @@ const Chat = ({...props}) => {
     const [chat, setChat] = useState<IChat>();
     const [messages, setMessages] = useState<IMessage[]>([]);
     const [newMessage, setNewMessage] = useState('');
-    const [trigger, setTrigger] = useState(Date.now())
-    
+    const [trigger, setTrigger] = useState(Date.now()) // used to trigger useEffect
+   
+    // get chat and messages
     useEffect(() => {
       fetch('/chat/' + props.id, {
         method: "GET",
@@ -76,6 +77,7 @@ const Chat = ({...props}) => {
       return () => clearInterval(interval)
     }, [])
 
+    // send message
     const sendMessage = () => {
       fetch('/chat/message', {
         method: "POST",
