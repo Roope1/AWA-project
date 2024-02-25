@@ -17,7 +17,8 @@ const Chat = ({...props}) => {
     interface IMessage {
       authorId: string,
       author: string,
-      content: string
+      content: string,
+      updatedAt: string
     }
     
     const { t } = useTranslation();

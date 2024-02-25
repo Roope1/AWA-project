@@ -37,7 +37,10 @@ const Message = ({...props}) => {
     <div className='border border-red-500 flex flex-row mt-2'>
         <img className='w-12 rounded-full mx-2' src={profilePic ?? avatar} alt="avatar"/>
         <div className=''>
+          <div className='flex flex-row justify-between'>
             <p className='font-bold'>{props.message.author}</p>
+            <p className='ml-10 mt-1 text-xs'>{new Date(props.message.updatedAt).toLocaleString()}</p>
+          </div>
             <p>{props.message.content}</p>
         </div>
     </div>
