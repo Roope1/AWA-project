@@ -15,7 +15,8 @@ Then install the required dependencies by running `npm install` this will take a
 
 Run commands: 
 ```shell
-npm run dev:client && npm run dev:server
+npm run dev:client 
+npm run dev:server
 ```
 The application will run on port 3000
 
