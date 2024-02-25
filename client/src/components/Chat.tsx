@@ -68,6 +68,14 @@ const Chat = ({...props}) => {
     })
     }, [trigger, props.id, auth_token])
 
+    // poll for new messages every 5 seconds
+    useEffect(() => {
+      const interval = setInterval(() => {
+        setTrigger(Date.now())
+      }, 5000)
+      return () => clearInterval(interval)
+    }, [])
+
     const sendMessage = () => {
       fetch('/chat/message', {
         method: "POST",
