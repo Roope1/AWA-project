@@ -1,6 +1,8 @@
 # AWA-project
 CT30A3204 Advanced Web Applications - Course Project
 
+Name: Roope Turkki
+
 ## How to operate
 Clone the repository and navigate to the project directory in a shell of your choice.
 
@@ -32,3 +34,7 @@ The application will run on port 5000
 Client and server spesific documentation can be found in their own respective README files
 * [Client](./client/README.md)
 * [Server](./server/README.md)
+
+# Other notes
+* The repository is located at https://github.com/Roope1/AWA-project
+* Points proposal is in the [PointsProposal.pdf](./PointsProposal.pdf) file
