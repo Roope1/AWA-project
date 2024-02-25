@@ -1,11 +1,25 @@
 import React, { useEffect, useState } from 'react'
 import ProfileDropdown from './ProfileDropdown'
+import { useTranslation } from 'react-i18next'
 
 
 export const TopBar = () => {
 
     const [username, setUsername] = useState("")
     const [loggedIn, setLoggedIn] = useState(false)
+    const [lang, setLang] = useState('en')
+    const {t, i18n} = useTranslation();
+
+    const changeLang = () => {
+      if(lang === 'en'){
+        i18n.changeLanguage('fi');
+        setLang('fi');
+      }
+      else {
+        i18n.changeLanguage('en');
+        setLang('en');
+      }
+    }
 
     useEffect(() => {
 
@@ -39,8 +53,8 @@ export const TopBar = () => {
             <span className='self-center lg:text-2xl sm:text-lg whitespace-nowrap'>NotTinder</span>
         </a>
         <div className='flex items-center lg:space-x-6 sm:space-x-2 text-secondary'>
-            {!loggedIn ? <p><a href='/login'>Sign in</a></p> : <ProfileDropdown username={username}/>}
-            <p>FI/EN</p>
+            {!loggedIn ? <p><a href='/login'>{t("login")}</a></p> : <ProfileDropdown username={username}/>}
+            <p><a onClick={changeLang}>FI/EN</a></p>
         </div>
     </div>
   )

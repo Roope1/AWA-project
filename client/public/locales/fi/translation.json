@@ -1,0 +1,14 @@
+{
+    "username": "Käyttäjänimi",
+    "password": "Salasana",
+    "user-pass-error": "Käyttäjänimi tai salasana on väärä",
+    "login": "Kirjaudu",
+    "no-account": "Ei tiliä?",
+    "register": "Rekisteröidy",
+    "here": "tästä",
+    "chats": "Keskustelut",
+    "start-swipe": "Aloita Swaippailu",
+    "bio": "Bio",
+    "no-matches": "Ei matcheja vielä",
+    "select-chat": "Valitse keskustelu"
+}

@@ -1,0 +1,14 @@
+{
+    "username": "Username",
+    "password": "Password",
+    "user-pass-error": "Username or password is incorrect",
+    "login": "Login",
+    "no-account": "Don't have an account?",
+    "register": "Register",
+    "here": "here",
+    "chats": "Chats",
+    "start-swipe": "Start Swiping",
+    "bio": "Bio",
+    "no-matches": "No matches yet",
+    "select-chat": "Select a chat to start messaging"
+}

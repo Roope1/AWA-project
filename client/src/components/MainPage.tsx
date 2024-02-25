@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import Profile from './Profile'
+import { useTranslation } from 'react-i18next';
 
 const MainPage = () => {
 
   const [profileData, setProfileData] = useState({})
+  const { t } = useTranslation();
 
   useEffect(() => {
 
@@ -33,8 +35,8 @@ const MainPage = () => {
   return (
     <div>
       <div className='lg:grid lg:grid-cols-2 sm:flex sm:flex-col sm:gap-2 w-screen py-10 text-white text-3xl'>
-        <button className='bg-main rounded-xl lg:p-10 lg:m-10 sm:mx-2' onClick={() => window.location.href = '/chats'}>Chats</button>
-        <button className='bg-main rounded-xl lg:p-10 lg:m-10 sm:mx-2' onClick={() => window.location.href = '/swipe'}>Start Swiping</button>
+        <button className='bg-main rounded-xl lg:p-10 lg:m-10 sm:mx-2' onClick={() => window.location.href = '/chats'}>{t('chats')}</button>
+        <button className='bg-main rounded-xl lg:p-10 lg:m-10 sm:mx-2' onClick={() => window.location.href = '/swipe'}>{t('start-swipe')}</button>
       </div>
       <div className='flex flex-col items-center justify-center'>
         <Profile {...profileData} />
