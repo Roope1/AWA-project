@@ -62,9 +62,9 @@ const SwipePage = () => {
     return (
         <div className='w-full h-full sm:m-auto sm:px-10 lg:flex lg:flex-col justify-center items-center'>
             <Profile {...profile} />
-            <div className='w-full text-center my-10 text-white'>
-                <button onClick={handleLeft} className='px-10 mx-10 bg-main rounded'> {"<"} </button>
-                <button onClick={handleRight} className='px-10 mx-10 bg-main rounded'> {">"} </button>
+            <div className='w-full text-center lg:my-10 text-white sm:flex sm:flex-row sm:justify-between lg:justify-center'>
+                <button onClick={handleLeft} className='px-10 lg:mx-10 bg-main rounded'> {"<"} </button>
+                <button onClick={handleRight} className='px-10 lg:mx-10 bg-main rounded'> {">"} </button>
             </div>
         </div>
     )

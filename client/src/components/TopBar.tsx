@@ -49,7 +49,6 @@ export const TopBar = () => {
   return (
     <div className='sticky top-0 bg-main w-screen h-14 flex flex-wrap justify-between items-center mx-auto p-4 drop-shadow-md'>
         <a href='/' className='flex items-center lg:space-x-3 text-secondary'>
-            <img src="logo" className='h-8' alt='logo'/>
             <span className='self-center lg:text-2xl sm:text-lg whitespace-nowrap'>NotTinder</span>
         </a>
         <div className='flex items-center lg:space-x-6 sm:space-x-2 text-secondary'>
