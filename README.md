@@ -6,7 +6,7 @@ Name: Roope Turkki
 ## How to operate
 Clone the repository and navigate to the project directory in a shell of your choice.
 
-Create a `.env` file to the root of the project and add entry `SECRET` in there in the format `SECRET=<my secret key>` The key can be anything you want. I suggest that the key is a randomly generated string of characters and numbers at least 12 characters long.
+Create a `.env` file to the `./server` directory and add entry `SECRET` in there in the format `SECRET=<my secret key>` The key can be anything you want. I suggest that the key is a randomly generated string of characters and numbers at least 12 characters long.
 
 Then install the required dependencies by running `npm install` this will take a while so be patient.
 
